@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="/bower_components/reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="polimi.css">
+		<meta name="author" content="Andrea Brancaleoni" />
+		<meta name="title" content="Presentation" />
+		<meta name="subtitle" content="Very Professional Polimi Presentation" />
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class='front' data-background-repeat='no-repeat' data-background-image='/front.svg'>
+				</section>
+				<section data-markdown='/content.md' data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" >
+			</div>
+		</div>
+		<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="/bower_components/reveal.js/js/reveal.js"></script>
+		<script src="/bower_components/reveal.js/lib/js/head.min.js"></script>
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				slideNumber: true,
+				center: true,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '/bower_components/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '/bower_components/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/bower_components/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '/bower_components/reveal.js/plugin/zoom-js/zoom.js', async: true },
+					{ src: '/bower_components/reveal.js/plugin/notes/notes.js', async: true }
+				]
+			});
+			var author = $('meta[name=author]').attr("content");
+			var title = $('meta[name=title]').attr("content");
+			var subtitle = $('meta[name=subtitle]').attr("content");
+
+			console.log(author, title, subtitle);
+			if (title || subtitle) {
+				$('section.front').append('<div class="titles"></div>');
+				$titles = $('section.front .titles');
+
+				if (title)
+					$titles.append('<h1 class="title">' + title + '</h1>');
+
+				if (subtitle)
+					$titles.append('<h2 class="subtitle">' + subtitle + '</h2>');
+			}
+
+			if (author)
+				$('section.front').append('<h3 class="author">' + author + '</h3>');
+		</script>
+	</body>
+</html>
