@@ -55,6 +55,30 @@
 
 			if (author)
 				$('section.front').append('<h3 class="author">' + author + '</h3>');
+
+			var i = 0;
+			var trans = ['none', 'fade', 'slide', 'convex', 'concave', 'zoom'];
+
+			var hidecontrols = null;
+
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+				i++;
+				if (hidecontrols !== null)
+					clearTimeout(hidecontrols);
+
+				if (i % 3 == 0)
+					var tnow = trans[Math.floor(Math.random() * trans.length)];
+
+				Reveal.configure({transition: tnow, controls: true, slideNumber: true});
+
+				hidecontrols = setTimeout(function () {
+					Reveal.configure({controls: false, slideNumber: false}); }, 10000);
+
+				// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+			} );
+
+
+
 		</script>
 	</body>
 </html>
